@@ -1,0 +1,1151 @@
++ OPTS='--test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G'
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
+# {'__meta__': {'action': 'randwrite',
+#              'blocksize': 4,
+#              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+#              'concurence': 1,
+#              'direct_io': True,
+#              'iodepth': 1,
+#              'size': 10485760,
+#              'sync': False,
+#              'use_hight_io_priority': True},
+# 'bw_mean': 1673.39,
+# 'clat': 2409.27,
+# 'iops': 414,
+# 'lat': 2409.58,
+# 'slat': 0.0}
++ sync
++ echo 3
++ dd if=/dev/zero of=/var/lib/nova/test.bin bs=1048576 count=10240
+10240+0 records in
+10240+0 records out
+10737418240 bytes (11 GB) copied, 31.0158 s, 346 MB/s
++ sync
++ echo 3
++ dd if=/dev/zero of=/var/lib/nova/test.bin bs=1048576 count=10240
+10240+0 records in
+10240+0 records out
+10737418240 bytes (11 GB) copied, 30.9553 s, 347 MB/s
+++ seq 7
++ for cycle in '$(seq $NUM_CYCLES)'
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 1682.81,
+ 'clat': 2392.63,
+ 'iops': 417,
+ 'lat': 2392.98,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 426.5,
+ 'clat': 9460.45,
+ 'iops': 105,
+ 'lat': 9460.89,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 209.59,
+ 'clat': 19143.97,
+ 'iops': 52,
+ 'lat': 19144.43,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 646.97,
+ 'clat': 6179.94,
+ 'iops': 161,
+ 'lat': 6180.21,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 268.46,
+ 'clat': 14909.46,
+ 'iops': 67,
+ 'lat': 14909.82,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 165.26,
+ 'clat': 24231.31,
+ 'iops': 41,
+ 'lat': 24231.67,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -s --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=1 --prio=0',
+              'concurence': 1,
+              'direct_io': False,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': True,
+              'use_hight_io_priority': True},
+ 'bw_mean': 141.01,
+ 'clat': 28310.58,
+ 'iops': 35,
+ 'lat': 28310.9,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a read --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'read',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=read --rw=read --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170735.33,
+ 'clat': 12008.02,
+ 'iops': 83,
+ 'lat': 12008.3,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a write --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'write',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=write --rw=write --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170790.42,
+ 'clat': 12019.4,
+ 'iops': 82,
+ 'lat': 12049.59,
+ 'slat': 0.0}
++ for cycle in '$(seq $NUM_CYCLES)'
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 1673.31,
+ 'clat': 2399.36,
+ 'iops': 415,
+ 'lat': 2399.71,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 418.6,
+ 'clat': 9609.65,
+ 'iops': 104,
+ 'lat': 9610.17,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 208.25,
+ 'clat': 19332.63,
+ 'iops': 51,
+ 'lat': 19333.14,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 647.54,
+ 'clat': 6174.55,
+ 'iops': 161,
+ 'lat': 6174.83,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 272.66,
+ 'clat': 14633.63,
+ 'iops': 68,
+ 'lat': 14633.98,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 167.93,
+ 'clat': 23837.71,
+ 'iops': 41,
+ 'lat': 23838.01,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -s --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=1 --prio=0',
+              'concurence': 1,
+              'direct_io': False,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': True,
+              'use_hight_io_priority': True},
+ 'bw_mean': 140.7,
+ 'clat': 28376.68,
+ 'iops': 35,
+ 'lat': 28377.03,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a read --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'read',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=read --rw=read --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 171001.83,
+ 'clat': 11989.48,
+ 'iops': 83,
+ 'lat': 11989.76,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a write --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'write',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=write --rw=write --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 169921.34,
+ 'clat': 12029.1,
+ 'iops': 82,
+ 'lat': 12059.13,
+ 'slat': 0.0}
++ for cycle in '$(seq $NUM_CYCLES)'
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 1671.21,
+ 'clat': 2408.56,
+ 'iops': 414,
+ 'lat': 2408.9,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 417.43,
+ 'clat': 9649.81,
+ 'iops': 103,
+ 'lat': 9650.43,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 207.81,
+ 'clat': 19340.19,
+ 'iops': 51,
+ 'lat': 19340.66,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 649.63,
+ 'clat': 6154.86,
+ 'iops': 162,
+ 'lat': 6155.14,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 282.04,
+ 'clat': 14175.59,
+ 'iops': 70,
+ 'lat': 14175.94,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 169.65,
+ 'clat': 23610.93,
+ 'iops': 42,
+ 'lat': 23611.3,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -s --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=1 --prio=0',
+              'concurence': 1,
+              'direct_io': False,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': True,
+              'use_hight_io_priority': True},
+ 'bw_mean': 140.71,
+ 'clat': 28361.1,
+ 'iops': 35,
+ 'lat': 28361.42,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a read --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'read',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=read --rw=read --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170916.31,
+ 'clat': 11997.17,
+ 'iops': 83,
+ 'lat': 11997.43,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a write --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'write',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=write --rw=write --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170935.69,
+ 'clat': 11965.64,
+ 'iops': 83,
+ 'lat': 11995.93,
+ 'slat': 0.0}
++ for cycle in '$(seq $NUM_CYCLES)'
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 1678.52,
+ 'clat': 2399.81,
+ 'iops': 415,
+ 'lat': 2400.13,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 420.28,
+ 'clat': 9584.96,
+ 'iops': 104,
+ 'lat': 9585.4,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 210.83,
+ 'clat': 19091.06,
+ 'iops': 52,
+ 'lat': 19091.54,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 649.42,
+ 'clat': 6157.73,
+ 'iops': 162,
+ 'lat': 6158.0,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 277.74,
+ 'clat': 14391.05,
+ 'iops': 69,
+ 'lat': 14391.45,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 165.79,
+ 'clat': 24115.52,
+ 'iops': 41,
+ 'lat': 24115.83,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -s --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=1 --prio=0',
+              'concurence': 1,
+              'direct_io': False,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': True,
+              'use_hight_io_priority': True},
+ 'bw_mean': 142.34,
+ 'clat': 28048.31,
+ 'iops': 35,
+ 'lat': 28048.64,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a read --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'read',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=read --rw=read --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170951.19,
+ 'clat': 11993.77,
+ 'iops': 83,
+ 'lat': 11994.05,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a write --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'write',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=write --rw=write --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170472.69,
+ 'clat': 11991.51,
+ 'iops': 83,
+ 'lat': 12021.62,
+ 'slat': 0.0}
++ for cycle in '$(seq $NUM_CYCLES)'
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 1673.42,
+ 'clat': 2397.65,
+ 'iops': 416,
+ 'lat': 2397.98,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 420.49,
+ 'clat': 9550.18,
+ 'iops': 104,
+ 'lat': 9550.63,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 207.09,
+ 'clat': 19439.4,
+ 'iops': 51,
+ 'lat': 19439.87,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 650.49,
+ 'clat': 6147.65,
+ 'iops': 162,
+ 'lat': 6147.91,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 278.31,
+ 'clat': 14359.77,
+ 'iops': 69,
+ 'lat': 14360.13,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 163.66,
+ 'clat': 24452.33,
+ 'iops': 40,
+ 'lat': 24452.66,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -s --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=1 --prio=0',
+              'concurence': 1,
+              'direct_io': False,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': True,
+              'use_hight_io_priority': True},
+ 'bw_mean': 142.1,
+ 'clat': 28081.9,
+ 'iops': 35,
+ 'lat': 28082.22,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a read --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'read',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=read --rw=read --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170992.61,
+ 'clat': 11990.9,
+ 'iops': 83,
+ 'lat': 11991.17,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a write --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'write',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=write --rw=write --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170969.84,
+ 'clat': 11967.06,
+ 'iops': 83,
+ 'lat': 11997.28,
+ 'slat': 0.0}
++ for cycle in '$(seq $NUM_CYCLES)'
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 1681.82,
+ 'clat': 2393.27,
+ 'iops': 417,
+ 'lat': 2393.59,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 415.78,
+ 'clat': 9657.77,
+ 'iops': 103,
+ 'lat': 9658.22,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 208.0,
+ 'clat': 19292.92,
+ 'iops': 51,
+ 'lat': 19293.35,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 649.51,
+ 'clat': 6157.87,
+ 'iops': 162,
+ 'lat': 6158.13,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 275.1,
+ 'clat': 14512.25,
+ 'iops': 68,
+ 'lat': 14512.56,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 172.36,
+ 'clat': 23139.72,
+ 'iops': 43,
+ 'lat': 23140.04,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -s --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=1 --prio=0',
+              'concurence': 1,
+              'direct_io': False,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': True,
+              'use_hight_io_priority': True},
+ 'bw_mean': 141.8,
+ 'clat': 28140.0,
+ 'iops': 35,
+ 'lat': 28140.34,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a read --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'read',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=read --rw=read --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170995.45,
+ 'clat': 11991.17,
+ 'iops': 83,
+ 'lat': 11991.43,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a write --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'write',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=write --rw=write --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 169998.89,
+ 'clat': 12015.88,
+ 'iops': 82,
+ 'lat': 12046.07,
+ 'slat': 0.0}
++ for cycle in '$(seq $NUM_CYCLES)'
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 1672.71,
+ 'clat': 2406.26,
+ 'iops': 414,
+ 'lat': 2406.59,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 424.51,
+ 'clat': 9484.21,
+ 'iops': 105,
+ 'lat': 9484.71,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 209.84,
+ 'clat': 19209.28,
+ 'iops': 52,
+ 'lat': 19209.69,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 1
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 648.28,
+ 'clat': 6166.82,
+ 'iops': 162,
+ 'lat': 6167.09,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 4
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=4 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 4,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 279.11,
+ 'clat': 14316.6,
+ 'iops': 69,
+ 'lat': 14316.98,
+ 'slat': 0.0}
++ for conc in 1 4 8
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randread --blocksize 4k -d --concurrency 8
+{'__meta__': {'action': 'randread',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randread --rw=randread --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=8 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 8,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 166.04,
+ 'clat': 24170.73,
+ 'iops': 41,
+ 'lat': 24170.97,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -s --concurrency 1
+{'__meta__': {'action': 'randwrite',
+              'blocksize': 4,
+              'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=1 --prio=0',
+              'concurence': 1,
+              'direct_io': False,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': True,
+              'use_hight_io_priority': True},
+ 'bw_mean': 141.26,
+ 'clat': 28259.47,
+ 'iops': 35,
+ 'lat': 28259.78,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a read --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'read',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=read --rw=read --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170847.42,
+ 'clat': 12002.02,
+ 'iops': 83,
+ 'lat': 12002.29,
+ 'slat': 0.0}
++ sync
++ echo 3
++ python io.py --test-file /var/lib/nova/test.bin --type fio --iodepth 1 --iosize 10G -a write --blocksize 2m -d --concurrency 1
+{'__meta__': {'action': 'write',
+              'blocksize': 2048,
+              'cmdline': '/usr/bin/fio --name=write --rw=write --blocksize=2048k --iodepth=1 --filename=/var/lib/nova/test.bin --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
+              'concurence': 1,
+              'direct_io': True,
+              'iodepth': 1,
+              'size': 10485760,
+              'sync': False,
+              'use_hight_io_priority': True},
+ 'bw_mean': 170571.77,
+ 'clat': 11986.2,
+ 'iops': 83,
+ 'lat': 12016.37,
+ 'slat': 0.0}
