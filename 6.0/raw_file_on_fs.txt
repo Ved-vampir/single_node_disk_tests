@@ -1,0 +1,10 @@
+  BS     operation  S/D  CONC |   IOPS ~   dev | BW kBps ~    dev | LAT ms ~   dev |
+   4      randread    d     1 |    161 ~     0 |     648 ~      1 |      6 ~     0 |
+   4      randread    d     4 |    196 ~    57 |     820 ~    210 |     21 ~     5 |
+   4      randread    d     8 |    190 ~    66 |    1030 ~    160 |     44 ~    10 |
+   4     randwrite    d     1 |    372 ~     2 |    1564 ~     17 |      2 ~     0 |
+   4     randwrite    d     4 |    364 ~     3 |    1546 ~     22 |     10 ~     0 |
+   4     randwrite    d     8 |    361 ~     5 |    1510 ~     12 |     21 ~     0 |
+   4     randwrite    s     1 |     41 ~     0 |     166 ~      0 |     23 ~     0 |
+2048          read    d     1 |     11 ~     0 |   24980 ~    880 |     84 ~     2 |
+2048         write    d     1 |     10 ~     0 |   22040 ~    280 |     96 ~     0 |
