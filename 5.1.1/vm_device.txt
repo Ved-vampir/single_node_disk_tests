@@ -2,7 +2,7 @@
 + sync
 + echo 3
 + python io.py --test-file /dev/vdb --type fio --iodepth 1 --iosize 10G -a randwrite --blocksize 4k -d --concurrency 1
-{'__meta__': {'action': 'randwrite',
+# {'__meta__': {'action': 'randwrite',
               'blocksize': 4,
               'cmdline': '/usr/bin/fio --name=randwrite --rw=randwrite --blocksize=4k --iodepth=1 --filename=/dev/vdb --size=10485760k --numjobs=1 --runtime=60 --output-format=json --sync=0 --direct=1 --prio=0',
               'concurence': 1,
